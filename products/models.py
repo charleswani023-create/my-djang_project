@@ -1,12 +1,12 @@
 from django.db import models
 
-# Create your models here.
-class product(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField()
-    specification = models.TextField(max_length=255)
+    color = models.CharField(max_length=50)
     quantity_stock = models.IntegerField()
-    color = models.CharField(max_length=10)
+    specification = models.TextField()
+    image = models.ImageField(upload_to='product_images/', blank=True, null=True)  # ✅ new field
 
-
-        
+    def __str__(self):
+        return self.name

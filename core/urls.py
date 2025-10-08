@@ -16,7 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings  # ✅ Add this line
+from django.conf.urls.static import static
+from products.views import product_list, add_product
+
+
 
 urlpatterns = [
+    path('', product_list),
+    path('add/', add_product),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+
+
